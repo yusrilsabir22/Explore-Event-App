@@ -17,4 +17,4 @@ cd .. && npx react-native run-ios
 
 If error:
 
-> delete ***package-lock.json*** and try again *** RUN IOS *** or *** RUN ANDROID ***
+> delete ***package-lock.json*** and try again **RUN IOS** or **RUN ANDROID**
