@@ -1,8 +1,9 @@
-import BaseViewModel from "../../component/base/BaseViewModel";
+import BaseViewModel, { BaseProps } from "../../component/base/BaseViewModel";
+import { RootScreenProps, HomeStackScreenRouteProp } from "../../config/navigation";
 
 
-export type EventProps = {
-    
+export interface EventProps extends BaseProps {
+    route: HomeStackScreenRouteProp;
 } 
 
 export type EventState = {

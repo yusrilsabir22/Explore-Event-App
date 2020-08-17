@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Text, View, StyleSheet, Dimensions, Image } from 'react-native';
-import { HomeStackScreenNavigationProp } from '../../config/navigation';
+import { HomeStackScreenNavigationProp, RootScreenProps } from '../../config/navigation';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
@@ -12,7 +12,7 @@ interface ItemProps {
     id: number;
     date: string;
     index: number,
-    navigation?: HomeStackScreenNavigationProp
+    navigation?: RootScreenProps
 }
 
 interface ItemState {

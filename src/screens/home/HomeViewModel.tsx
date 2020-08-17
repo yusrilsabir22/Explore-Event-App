@@ -1,8 +1,7 @@
 import { RootScreenNavigationProp, RootScreenRouteProp, HomeStackScreenNavigationProp, HomeStackScreenRouteProp } from "../../config/navigation";
-import BaseViewModel from "../../component/base/BaseViewModel";
+import BaseViewModel, { BaseProps } from "../../component/base/BaseViewModel";
 
-export interface HomeProps {
-    navigation?: HomeStackScreenNavigationProp;
+export interface HomeProps extends BaseProps {
     route?: HomeStackScreenRouteProp;
 }
 

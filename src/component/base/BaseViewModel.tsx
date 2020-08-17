@@ -1,34 +1,23 @@
 import { EmitterSubscription, Keyboard } from "react-native";
 import { BaseContainer } from "./BaseContainer";
-import { HomeScreenNavigationProp, HomeScreenRouteProp } from "../../config/navigation";
+import { RootScreenProps, HomeStackScreenRouteProp } from "../../config/navigation";
 
 export interface IBasePresenter<P, S> {
     [x: string]: any;
     setState<K extends keyof S>(
         state:
-        | ((prevState: Readonly<S>, props: Readonly<P>) => Pick<S, K> | S | null)
-        | (Pick<S, K> | S | null),
+            | ((prevState: Readonly<S>, props: Readonly<P>) => Pick<S, K> | S | null)
+            | (Pick<S, K> | S | null),
         cb?: () => void,
     ): void;
 
     getProps(): P;
 
-    getState(): S;
+    getStates(): S;
 }
 
 export interface BaseProps {
-    navigation?: HomeScreenNavigationProp;
-    route?: HomeScreenRouteProp;
-    // {
-    //     navigate: (screen: any, param?: any) => void;
-    //     replace: (screen: any, param?: any) => void;
-    //     goBack: () => void;
-    //     dispatch: (action: any) => {};
-    //     getParam: (key: any, defaultData?: any) => any;
-    //     addListener: any;
-    //     push: any;
-    //     state: any;
-    // };
+    navigation: RootScreenProps;
 }
 
 export interface BaseState {

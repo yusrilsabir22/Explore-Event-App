@@ -7,6 +7,10 @@ import {Text} from 'react-native'
 import TabBarIcon from '../component/nav';
 import {StackScreenProps, createStackNavigator, StackNavigationProp} from '@react-navigation/stack';
 import {CompositeNavigationProp} from '@react-navigation/native';
+import Search from '../screens/search/Search';
+import Message from '../screens/message/Message';
+import Setting from '../screens/setting/Setting';
+import Event from '../screens/event/Event';
 
 type RootNavigator = {
     Home: undefined,
@@ -28,6 +32,7 @@ export type RootScreenRouteProp = RouteProp<RootNavigator, "Home">;
 export type HomeStackScreenNavigationProp = StackNavigationProp<StackNavigator, "Home">;
 export type HomeStackScreenRouteProp = RouteProp<StackNavigator, "Home">;
 
+export type RootScreenProps = CompositeNavigationProp<RootScreenNavigationProp, HomeStackScreenNavigationProp>;
 
 const Tab = createBottomTabNavigator<RootNavigator>();
 const Stack = createStackNavigator<StackNavigator>();
@@ -45,28 +50,28 @@ export const TabNavigator = () => {
         }}>
             <Tab.Screen 
                 name="Home" 
-                component={StackNavigator} 
+                component={StackNavigator}
                 options={{
                     tabBarIcon: ({color, focused, size}) => <TabBarIcon focused={focused} name={"home"} />
                 }}
             />
             <Tab.Screen
                 name="Search"
-                component={() => { return <Text>Search</Text> }}
+                component={Search}
                 options={{
                     tabBarIcon: ({ color, focused, size }) => <TabBarIcon focused={focused} name="search" />
                 }}
             />
             <Tab.Screen
                 name="Message"
-                component={() => {return <Text>Message</Text>}}
+                component={Message}
                 options={{
                     tabBarIcon: ({ color, focused, size }) => <TabBarIcon focused={focused} name={"envelope"} solid badge={2} />
                 }}
             />
             <Tab.Screen
                 name="Setting"
-                component={() => { return <Text>Setting</Text> }}
+                component={Setting}
                 options={{
                     tabBarIcon: ({ color, focused, size }) => <TabBarIcon focused={focused} name="cog" />
                 }}
@@ -74,12 +79,21 @@ export const TabNavigator = () => {
         </Tab.Navigator>
     )
 }
+// @ts-ignore
+export const StackNavigator = ({navigation, route}) => {
+    if(route.state) {
+    let routeName = route.state.routeNames[route.state.index];
+        if (routeName == "Event") {
+            navigation.setOptions({ tabBarVisible: false });
+        } else {
+            navigation.setOptions({ tabBarVisible: true });
+        }
+    }
 
-export const StackNavigator = () => {
     return (
-        <Stack.Navigator headerMode="none">
+        <Stack.Navigator headerMode="none" initialRouteName="Home">
             <Stack.Screen name="Home" component={Home}/>
-            <Stack.Screen name="Event" component={() => <Text>Event Screen</Text>}/>
+            <Stack.Screen name="Event" component={Event} />
         </Stack.Navigator>
     )
 }

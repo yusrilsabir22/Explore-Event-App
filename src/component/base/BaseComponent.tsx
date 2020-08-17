@@ -2,7 +2,7 @@ import * as React from 'react'
 import BaseViewModel, { IBasePresenter } from './BaseViewModel';
 import { View, StyleSheet } from 'react-native';
 
-// @ts-ignore
+
 export default abstract class BaseComponent<P, S, VM
     extends BaseViewModel<P, S> = BaseViewModel<P, S>> extends React.Component<P, S>
     implements IBasePresenter<P, S> {
@@ -11,13 +11,11 @@ export default abstract class BaseComponent<P, S, VM
 
     constructor(props: P, V: { new(props: any): VM } | VM) {
         super(props);
-
-        if(typeof V === "object") {
+        if (typeof V == "object") {
             this.vm = V;
         } else {
             this.vm = new V(props);
         }
-
         this.vm.setPresenter(this);
         this.state = this.vm.state;
     }

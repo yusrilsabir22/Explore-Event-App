@@ -4,10 +4,10 @@ import { fakeData } from '../../helpers/utils'
 import Item from './Item'
 import { colors } from '../../helpers/colors'
 import HeadCard from './HeadCard';
-import { HomeStackScreenNavigationProp, HomeStackScreenRouteProp } from '../../config/navigation'
+import { HomeStackScreenNavigationProp, HomeStackScreenRouteProp, RootScreenProps } from '../../config/navigation'
 
 type Prop = {
-    navigation?: HomeStackScreenNavigationProp,
+    navigation?: RootScreenProps,
     route?: HomeStackScreenRouteProp
 }
 export default class CardHList extends PureComponent<Prop> {
